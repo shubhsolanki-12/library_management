@@ -28,7 +28,7 @@ public class LibraryManagementSystem {
       System.out.println("2. List Users");
       System.out.println("3. Borrow Book");
       System.out.println("4. Return Book");
-      System.out.println("5. List User's Books");
+      System.out.println("5. List Borrowed Books");
       System.out.println("6. Exit");
       System.out.print("Enter choice: ");
 
@@ -45,7 +45,10 @@ public class LibraryManagementSystem {
         case 3:
           System.out.println("Enter book isbn to borrow:");
           String isbn = sc.nextLine();
-          library.borrowBook(isbn, user2);
+          library.borrowBook(isbn, user1);
+          break;
+        case 5:
+          library.printBorrowedBooks();
           break;
         case 6:
           System.out.println("Exiting...");

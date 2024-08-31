@@ -78,4 +78,18 @@ public class Library {
     }
   }
 
+  public Map<String, String> getBorrowedBooks() {
+    return borrowedBooks;
+  }
+
+  public void printBorrowedBooks() {
+    if (borrowedBooks.isEmpty()) {
+      System.out.println("No books are currently borrowed.");
+    } else {
+      System.out.println("Borrowed books:");
+      for (Map.Entry<String, String> entry : borrowedBooks.entrySet()) {
+        System.out.println("Book ISBN: " + entry.getKey() + ", Borrowed by User ID: " + entry.getValue());
+      }
+    }
+  }
 }
