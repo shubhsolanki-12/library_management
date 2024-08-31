@@ -19,4 +19,13 @@ public class LibraryTest {
         library.addBook("1234", "It Starts with Us", "Colleen Hoover");
         assertEquals(3, library.getBooks().size());
     }
+
+    @Test
+    public void addUserTest() {
+        Library library = new Library();
+        library.addUser("111", "Shubh Solanki");
+        assertEquals(1, library.getUsers().size());
+        library.addUser("112", "Kuldip Gohel");
+        assertEquals(2, library.getUsers().size());
+    }
 }

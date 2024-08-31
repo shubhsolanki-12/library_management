@@ -8,6 +8,7 @@ public class Library {
 
   public Library() {
     this.books = new ArrayList<>();
+
   }
 
   public void addBook(String isbn, String title, String author) {
@@ -15,14 +16,11 @@ public class Library {
   }
 
   public List<Book> getBooks() {
-    return books;
-  }
-
-  public void listBooks() {
     for (Book book : books) {
       System.out.println(
           "Title: " + book.getTitle() + ", Author: " + book.getAuthor() + ", Available: " + book.isAvailable());
     }
+    return books;
   }
 
 }
