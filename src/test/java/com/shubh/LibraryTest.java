@@ -22,10 +22,12 @@ public class LibraryTest {
     @Test
     public void addUserTest() {
         Library library = new Library();
-        library.addUser("111", "Shubh Solanki");
-        assertEquals(1, library.getUsers().size());
-        library.addUser("112", "Kuldip Gohel");
-        assertEquals(2, library.getUsers().size());
+        User user = new User("111", "Shubh Solanki");
+        library.addUser(user);
+        assertEquals(true, library.getUsers().contains(user));
+        User user2 = new User("112", "Kuldip Gohel");
+        library.addUser(user2);
+        assertEquals(true, library.getUsers().contains(user2));
     }
 
     @Test

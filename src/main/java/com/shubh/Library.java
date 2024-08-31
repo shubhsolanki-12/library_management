@@ -21,35 +21,61 @@ public class Library {
     books.add(new Book(isbn, title, author));
   }
 
-  public void addUser(String userId, String name) {
-    users.add(new User(userId, name));
+  public void addUser(User user) {
+    if (!users.contains(user)) {
+      users.add(user);
+    }
   }
 
   public List<Book> getBooks() {
-    for (Book book : books) {
-      System.out.println(
-          "Title: " + book.getTitle() + ", Author: " + book.getAuthor() + ", Available: " + book.isAvailable());
-    }
     return books;
   }
 
   public List<User> getUsers() {
-    for (User user : users) {
-      System.out.println(
-          "UserID: " + user.getUserId() + ", UserName: " + user.getName());
-    }
     return users;
   }
 
-  public boolean borrowBook(String isbn, User user) {
+  public void listBooks() {
     for (Book book : books) {
-      if (book.getIsbn().equals(isbn) && !borrowedBooks.containsKey(isbn)) {
-        borrowedBooks.put(isbn, user.getUserId());
-        books.remove(book);
-        return true;
+      System.out.println(
+          "Isbn:" + book.getIsbn() +
+              " Title: " + book.getTitle() +
+              ", Author: " + book.getAuthor() +
+              ", Available: " + book.isAvailable());
+    }
+  }
+
+  public void listUsers() {
+    if (users.isEmpty()) {
+      System.out.println("No user found!");
+    } else {
+      for (User user : users) {
+        System.out.println(
+            "UserID: " + user.getUserId() +
+                ", UserName: " + user.getName());
       }
     }
-    return false;
+  }
+
+  public boolean borrowBook(String isbn, User user) {
+    if (users.contains(user)) {
+      for (Book book : books) {
+        if (book.getIsbn().equals(isbn) && book.isAvailable()) {
+          book.isAvailable = false;
+          borrowedBooks.put(isbn, user.getUserId());
+          System.out.println("User " + user.getName() + " borrowed book: \"" + book.getTitle() + "\"");
+          return true;
+        } else if (book.getIsbn().equals(isbn) && !book.isAvailable()) {
+          System.out.println("\"" + book.getTitle() + "\" is not available because someone has already borrowed.");
+          return true;
+        }
+      }
+      System.out.println("Book Not Found!");
+      return false;
+    } else {
+      System.out.println("User Not Found!");
+      return false;
+    }
   }
 
 }
