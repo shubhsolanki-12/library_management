@@ -58,24 +58,22 @@ public class Library {
   }
 
   public boolean borrowBook(String isbn, User user) {
-    if (users.contains(user)) {
-      for (Book book : books) {
-        if (book.getIsbn().equals(isbn) && book.isAvailable()) {
-          book.isAvailable = false;
-          borrowedBooks.put(isbn, user.getUserId());
-          System.out.println("User " + user.getName() + " borrowed book: \"" + book.getTitle() + "\"");
-          return true;
-        } else if (book.getIsbn().equals(isbn) && !book.isAvailable()) {
-          System.out.println("\"" + book.getTitle() + "\" is not available because someone has already borrowed.");
-          return true;
-        }
-      }
-      System.out.println("Book Not Found!");
-      return false;
-    } else {
-      System.out.println("User Not Found!");
-      return false;
+    if (!users.contains(user)) {
+      users.add(user);
     }
+    for (Book book : books) {
+      if (book.getIsbn().equals(isbn) && book.isAvailable()) {
+        book.isAvailable = false;
+        borrowedBooks.put(isbn, user.getUserId());
+        System.out.println("User " + user.getName() + " borrowed book: \"" + book.getTitle() + "\"");
+        return true;
+      } else if (book.getIsbn().equals(isbn) && !book.isAvailable()) {
+        System.out.println("\"" + book.getTitle() + "\" is not available because someone has already borrowed.");
+        return false;
+      }
+    }
+    System.out.println("Book Not Found!");
+    return false;
   }
 
   public Map<String, String> getBorrowedBooks() {

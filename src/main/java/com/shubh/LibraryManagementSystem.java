@@ -20,7 +20,7 @@ public class LibraryManagementSystem {
     // Creating users
     User user1 = new User("111", "Shubh Solanki");
     library.addUser(user1);
-    User user2 = new User("112", "Sarang");
+    // User user2 = new User("112", "Sarang");
 
     while (true) {
       System.out.println("\nLibrary Management System");

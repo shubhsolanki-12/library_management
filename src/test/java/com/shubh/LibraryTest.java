@@ -1,45 +1,64 @@
 package com.shubh;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class LibraryTest {
+    Library library;
+
+    @BeforeEach
+    void setUp() {
+        library = new Library();
+    }
 
     @Test
     public void addBookTest() {
-        Library library = new Library();
-        library.addBook("12345", "Harry Potter and the Philosopher's Stone", "J. K. Rowling");
+        library.addBook("1224", "It Ends with Us", "Colleen Hoover");
         assertEquals(1, library.getBooks().size());
 
-        library.addBook("1224", "It Ends with Us", "Colleen Hoover");
-        assertEquals(2, library.getBooks().size());
-
         library.addBook("1234", "It Starts with Us", "Colleen Hoover");
-        assertEquals(3, library.getBooks().size());
+        assertEquals(2, library.getBooks().size());
+    }
+
+    @Test
+    public void isBookAvailable() {
+        library.addBook("1224", "It Ends with Us", "Colleen Hoover");
+        assertTrue(library.getBooks().get(0).isAvailable());
     }
 
     @Test
     public void addUserTest() {
-        Library library = new Library();
         User user = new User("111", "Shubh Solanki");
         library.addUser(user);
         assertEquals(true, library.getUsers().contains(user));
-        User user2 = new User("112", "Kuldip Gohel");
-        library.addUser(user2);
-        assertEquals(true, library.getUsers().contains(user2));
     }
 
     @Test
     public void bookBorrowTest() {
-        Library library = new Library();
         User user = new User("111", "Shubh Solanki");
+        library.addUser(user);
 
         library.addBook("1224", "It Ends with Us", "Colleen Hoover");
-        library.addBook("1234", "It Starts with Us", "Colleen Hoover");
-        library.addBook("12345", "Harry Potter and the Philosopher's Stone", "J. K. Rowling");
 
-        boolean isBorrowed = library.borrowBook("12345", user);
+        boolean isBorrowed = library.borrowBook("1224", user);
         assertEquals(true, isBorrowed);
     }
+
+    @Test
+    public void returnFalseIfBookUnavialableToBorrow() {
+        User user = new User("111", "Shubh Solanki");
+        library.addUser(user);
+
+        library.addBook("1224", "It Ends with Us", "Colleen Hoover");
+
+        library.borrowBook("1224", user);
+        // second time borrowing same book
+        boolean result = library.borrowBook("1224", user);
+        assertFalse(result);
+    }
+
 }
