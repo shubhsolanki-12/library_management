@@ -11,9 +11,6 @@ The project follows Test-Driven Development(TDD) practices, focusing on writing 
 - [Setup Instructions](#setup-instructions)
   - [Prerequisites](#prerequisites)
   - [Steps to setup project on your device](#steps-to-setup-project-on-your-device)
-- [Test Coverage](#test-coverage)
-- [References](#references)
-- [Acknowledgments](#acknowledgments)
 
 ## Objective
 
