@@ -4,15 +4,19 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.List;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class LibraryTest {
     Library library;
+    User user1;
 
     @BeforeEach
     void setUp() {
         library = new Library();
+        user1 = new User("111", "Shubh Solanki");
     }
 
     @Test
@@ -32,59 +36,59 @@ public class LibraryTest {
 
     @Test
     public void addUserTest() {
-        User user = new User("111", "Shubh Solanki");
-        library.addUser(user);
-        assertEquals(true, library.getUsers().contains(user));
+        library.addUser(user1);
+        List<User> userss = library.getUsers();
+        assertTrue(userss.contains(user1));
     }
 
     @Test
     public void bookBorrowTest() {
-        User user = new User("111", "Shubh Solanki");
-        library.addUser(user);
-
         library.addBook("1224", "It Ends with Us", "Colleen Hoover");
 
-        boolean isBorrowed = library.borrowBook("1224", user);
+        boolean isBorrowed = library.borrowBook("1224", user1);
         assertEquals(true, isBorrowed);
     }
 
     @Test
     public void returnFalseIfBookUnavialableToBorrow() {
-        User user = new User("111", "Shubh Solanki");
-        // library.addUser(user);
-
         library.addBook("1224", "It Ends with Us", "Colleen Hoover");
 
-        library.borrowBook("1224", user);
+        library.borrowBook("1224", user1);
         // second time borrowing same book
-        boolean result = library.borrowBook("1224", user);
+        boolean result = library.borrowBook("1224", user1);
         assertFalse(result);
     }
 
     @Test
     public void returnBookTest() {
-        User user = new User("111", "Shubh Solanki");
-
         library.addBook("1224", "It Ends with Us", "Colleen Hoover");
 
-        library.borrowBook("1224", user);
+        library.borrowBook("1224", user1);
 
-        boolean result = library.returnBook("1224", user);
+        boolean result = library.returnBook("1224", user1);
 
         assertTrue(result);
     }
 
     @Test
     public void returnFalseIfBookUnavialableToReturn() {
-        User user = new User("111", "Shubh Solanki");
 
         library.addBook("1224", "It Ends with Us", "Colleen Hoover");
 
-        library.borrowBook("1224", user);
-        library.returnBook("1224", user);
+        library.borrowBook("1224", user1);
+        library.returnBook("1224", user1);
 
-        boolean result = library.returnBook("1224", user);
+        boolean result = library.returnBook("1224", user1);
 
         assertFalse(result);
+    }
+
+    @Test
+    public void printBorrowedBooksTest() {
+        library.addBook("1224", "It Ends With Us", "Colleen Hoover");
+        library.borrowBook("1224", user1);
+        library.getBorrowedBooks();
+        boolean result = library.printBorrowedBooks();
+        assertTrue(result);
     }
 }

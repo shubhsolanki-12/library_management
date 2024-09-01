@@ -76,18 +76,41 @@ public class Library {
     return false;
   }
 
+  public boolean returnBook(String isbn, User user) {
+    if (!users.contains(user)) {
+      users.add(user);
+    }
+    if (borrowedBooks.containsKey(isbn) && borrowedBooks.get(isbn).equals(user.getUserId())) {
+      borrowedBooks.remove(isbn);
+      for (Book book : books) {
+        if (book.getIsbn().equals(isbn) && !book.isAvailable()) {
+          System.out.println("User " + user.getName() + " returned book: \"" + book.getTitle() + "\"");
+          book.isAvailable = true;
+          break;
+        } else if (book.getIsbn().equals(isbn) && book.isAvailable()) {
+          System.out.println("Book is already returned.");
+          return false;
+        }
+      }
+      return true;
+    }
+    return false;
+  }
+
   public Map<String, String> getBorrowedBooks() {
     return borrowedBooks;
   }
 
-  public void printBorrowedBooks() {
+  public boolean printBorrowedBooks() {
     if (borrowedBooks.isEmpty()) {
       System.out.println("No books are currently borrowed.");
+      return false;
     } else {
       System.out.println("Borrowed books:");
       for (Map.Entry<String, String> entry : borrowedBooks.entrySet()) {
         System.out.println("Book ISBN: " + entry.getKey() + ", Borrowed by User ID: " + entry.getValue());
       }
     }
+    return true;
   }
 }
