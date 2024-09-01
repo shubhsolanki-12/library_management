@@ -35,19 +35,26 @@ public class Library {
     return users;
   }
 
-  public void listBooks() {
-    for (Book book : books) {
-      System.out.println(
-          "Isbn:" + book.getIsbn() +
-              " Title: " + book.getTitle() +
-              ", Author: " + book.getAuthor() +
-              ", Available: " + book.isAvailable());
+  public boolean listBooks() {
+    if (books.isEmpty()) {
+      System.out.println("No books found!");
+      return false;
+    } else {
+      for (Book book : books) {
+        System.out.println(
+            "Isbn:" + book.getIsbn() +
+                " Title: " + book.getTitle() +
+                ", Author: " + book.getAuthor() +
+                ", Available: " + book.isAvailable());
+      }
     }
+    return true;
   }
 
-  public void listUsers() {
+  public boolean listUsers() {
     if (users.isEmpty()) {
       System.out.println("No user found!");
+      return false;
     } else {
       for (User user : users) {
         System.out.println(
@@ -55,6 +62,7 @@ public class Library {
                 ", UserName: " + user.getName());
       }
     }
+    return true;
   }
 
   public boolean borrowBook(String isbn, User user) {
@@ -81,19 +89,16 @@ public class Library {
       users.add(user);
     }
     if (borrowedBooks.containsKey(isbn) && borrowedBooks.get(isbn).equals(user.getUserId())) {
-      borrowedBooks.remove(isbn);
       for (Book book : books) {
         if (book.getIsbn().equals(isbn) && !book.isAvailable()) {
           System.out.println("User " + user.getName() + " returned book: \"" + book.getTitle() + "\"");
           book.isAvailable = true;
-          break;
-        } else if (book.getIsbn().equals(isbn) && book.isAvailable()) {
-          System.out.println("Book is already returned.");
-          return false;
+          return true;
         }
       }
-      return true;
+      borrowedBooks.remove(isbn);
     }
+    System.out.println("Either book is already returned or not borrowed");
     return false;
   }
 

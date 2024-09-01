@@ -21,15 +21,21 @@ public class LibraryTest {
 
     @Test
     public void addBookTest() {
-        library.addBook("1224", "It Ends with Us", "Colleen Hoover");
-        assertEquals(1, library.getBooks().size());
-
-        library.addBook("1234", "It Starts with Us", "Colleen Hoover");
-        assertEquals(2, library.getBooks().size());
+        Book book = new Book("1224", "It Ends with Us", "Colleen Hoover");
+        assertEquals("1224", book.getIsbn());
+        assertEquals("It Ends with Us", book.getTitle());
+        assertEquals("Colleen Hoover", book.getAuthor());
+        assertTrue(book.isAvailable);
     }
 
     @Test
-    public void isBookAvailable() {
+    public void addBookTest2() {
+        library.addBook("1224", "It Ends with Us", "Colleen Hoover");
+        assertEquals(1, library.getBooks().size());
+    }
+
+    @Test
+    public void isBookAvailableTesst() {
         library.addBook("1224", "It Ends with Us", "Colleen Hoover");
         assertTrue(library.getBooks().get(0).isAvailable());
     }
@@ -54,8 +60,17 @@ public class LibraryTest {
         library.addBook("1224", "It Ends with Us", "Colleen Hoover");
 
         library.borrowBook("1224", user1);
-        // second time borrowing same book
+
+        // second time borrowing the same book
         boolean result = library.borrowBook("1224", user1);
+        assertFalse(result);
+    }
+
+    @Test
+    public void returnFalseIfBookNotFoundToBorrow() {
+        library.addBook("1224", "It Ends with Us", "Colleen Hoover");
+
+        boolean result = library.borrowBook("1222", user1);
         assertFalse(result);
     }
 
@@ -72,14 +87,22 @@ public class LibraryTest {
 
     @Test
     public void returnFalseIfBookUnavialableToReturn() {
-
         library.addBook("1224", "It Ends with Us", "Colleen Hoover");
 
         library.borrowBook("1224", user1);
+        // First time return
         library.returnBook("1224", user1);
-
+        // Second time return
         boolean result = library.returnBook("1224", user1);
 
+        assertFalse(result);
+    }
+
+    @Test
+    public void returnFalseIfBookNotFoundToReturn() {
+        library.addBook("1224", "It Ends with Us", "Colleen Hoover");
+
+        boolean result = library.returnBook("1222", user1);
         assertFalse(result);
     }
 
@@ -90,5 +113,45 @@ public class LibraryTest {
         library.getBorrowedBooks();
         boolean result = library.printBorrowedBooks();
         assertTrue(result);
+    }
+
+    @Test
+    public void returnFalsePrintBorrowedBooksTest() {
+        boolean result = library.printBorrowedBooks();
+        assertFalse(result);
+    }
+
+    @Test
+    public void printAllBooksTest() {
+        library.addBook("1224", "It Ends With Us", "Colleen Hoover");
+        library.addBook("1225", "It Starts With Us", "Colleen Hoover");
+        library.addBook("1111", "Harry Potter and the Philosopher's Stone", "J. K. Rowling");
+        library.addBook("1112", "Harry Potter and the Chamber of Secrets", "J. K. Rowling");
+        library.addBook("1113", "Harry Potter and the Prisoner of Azkaban", "J. K. Rowling");
+
+        boolean result = library.listBooks();
+        assertTrue(result);
+    }
+
+    @Test
+    public void returnFalseIfNoBookFound() {
+        boolean result = library.listBooks();
+        assertFalse(result);
+    }
+
+    @Test
+    public void printAllUserTest() {
+        User user2 = new User("112", "Sarang");
+        library.addUser(user1);
+        library.addUser(user2);
+
+        boolean result = library.listUsers();
+        assertTrue(result);
+    }
+
+    @Test
+    public void returnFalseIfNoUserFound() {
+        boolean result = library.listUsers();
+        assertFalse(result);
     }
 }

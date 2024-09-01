@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.shubh.LibraryTest" time="0.019" tests="8" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.shubh.LibraryTest" time="0.021" tests="16" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="22"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
@@ -12,7 +12,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="IN"/>
     <property name="sun.boot.library.path" value="/opt/homebrew/Cellar/openjdk/22.0.2/libexec/openjdk.jdk/Contents/Home/lib"/>
-    <property name="sun.java.command" value="/Users/shubhsolanki/Desktop/incubyte/library_system/target/surefire/surefirebooter2662681949462014072.jar /Users/shubhsolanki/Desktop/incubyte/library_system/target/surefire 2024-09-01T10-10-11_971-jvmRun1 surefire1167980502366822414tmp surefire_01687115331840592557tmp"/>
+    <property name="sun.java.command" value="/Users/shubhsolanki/Desktop/incubyte/library_system/target/surefire/surefirebooter18034273746182196983.jar /Users/shubhsolanki/Desktop/incubyte/library_system/target/surefire 2024-09-01T11-38-54_853-jvmRun1 surefire7713255839260019880tmp surefire_010926193425844419546tmp"/>
     <property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="/Users/shubhsolanki/Desktop/incubyte/library_system/target/test-classes:/Users/shubhsolanki/Desktop/incubyte/library_system/target/classes:/Users/shubhsolanki/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.8.1/junit-jupiter-api-5.8.1.jar:/Users/shubhsolanki/.m2/repository/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar:/Users/shubhsolanki/.m2/repository/org/junit/platform/junit-platform-commons/1.8.1/junit-platform-commons-1.8.1.jar:/Users/shubhsolanki/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/Users/shubhsolanki/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.8.1/junit-jupiter-engine-5.8.1.jar:/Users/shubhsolanki/.m2/repository/org/junit/platform/junit-platform-engine/1.8.1/junit-platform-engine-1.8.1.jar:"/>
@@ -29,7 +29,7 @@
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="apple.awt.application.name" value="ForkedBooter"/>
-    <property name="surefire.real.class.path" value="/Users/shubhsolanki/Desktop/incubyte/library_system/target/surefire/surefirebooter2662681949462014072.jar"/>
+    <property name="surefire.real.class.path" value="/Users/shubhsolanki/Desktop/incubyte/library_system/target/surefire/surefirebooter18034273746182196983.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="java.runtime.version" value="22.0.2"/>
@@ -58,12 +58,20 @@
     <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="java.class.version" value="66.0"/>
   </properties>
-  <testcase name="addUserTest" classname="com.shubh.LibraryTest" time="0.007"/>
-  <testcase name="isBookAvailable" classname="com.shubh.LibraryTest" time="0"/>
-  <testcase name="returnBookTest" classname="com.shubh.LibraryTest" time="0.001"/>
-  <testcase name="printBorrowedBooksTest" classname="com.shubh.LibraryTest" time="0"/>
-  <testcase name="returnFalseIfBookUnavialableToBorrow" classname="com.shubh.LibraryTest" time="0.001"/>
-  <testcase name="addBookTest" classname="com.shubh.LibraryTest" time="0.001"/>
+  <testcase name="returnFalseIfNoUserFound" classname="com.shubh.LibraryTest" time="0.008"/>
+  <testcase name="printAllUserTest" classname="com.shubh.LibraryTest" time="0.001"/>
+  <testcase name="isBookAvailableTesst" classname="com.shubh.LibraryTest" time="0"/>
+  <testcase name="addUserTest" classname="com.shubh.LibraryTest" time="0"/>
+  <testcase name="returnFalseIfNoBookFound" classname="com.shubh.LibraryTest" time="0.001"/>
+  <testcase name="returnBookTest" classname="com.shubh.LibraryTest" time="0"/>
+  <testcase name="printBorrowedBooksTest" classname="com.shubh.LibraryTest" time="0.001"/>
+  <testcase name="returnFalseIfBookUnavialableToBorrow" classname="com.shubh.LibraryTest" time="0"/>
+  <testcase name="addBookTest" classname="com.shubh.LibraryTest" time="0.002"/>
+  <testcase name="returnFalseIfBookNotFoundToBorrow" classname="com.shubh.LibraryTest" time="0"/>
   <testcase name="bookBorrowTest" classname="com.shubh.LibraryTest" time="0"/>
   <testcase name="returnFalseIfBookUnavialableToReturn" classname="com.shubh.LibraryTest" time="0"/>
+  <testcase name="returnFalseIfBookNotFoundToReturn" classname="com.shubh.LibraryTest" time="0"/>
+  <testcase name="addBookTest2" classname="com.shubh.LibraryTest" time="0"/>
+  <testcase name="returnFalsePrintBorrowedBooksTest" classname="com.shubh.LibraryTest" time="0"/>
+  <testcase name="printAllBooksTest" classname="com.shubh.LibraryTest" time="0"/>
 </testsuite>
