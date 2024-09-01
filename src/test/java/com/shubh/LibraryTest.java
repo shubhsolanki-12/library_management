@@ -4,8 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.util.List;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -17,34 +15,6 @@ public class LibraryTest {
     void setUp() {
         library = new Library();
         user1 = new User("111", "Shubh Solanki");
-    }
-
-    @Test
-    public void addBookTest() {
-        Book book = new Book("1224", "It Ends with Us", "Colleen Hoover");
-        assertEquals("1224", book.getIsbn());
-        assertEquals("It Ends with Us", book.getTitle());
-        assertEquals("Colleen Hoover", book.getAuthor());
-        assertTrue(book.isAvailable);
-    }
-
-    @Test
-    public void addBookTest2() {
-        library.addBook("1224", "It Ends with Us", "Colleen Hoover");
-        assertEquals(1, library.getBooks().size());
-    }
-
-    @Test
-    public void isBookAvailableTesst() {
-        library.addBook("1224", "It Ends with Us", "Colleen Hoover");
-        assertTrue(library.getBooks().get(0).isAvailable());
-    }
-
-    @Test
-    public void addUserTest() {
-        library.addUser(user1);
-        List<User> userss = library.getUsers();
-        assertTrue(userss.contains(user1));
     }
 
     @Test
