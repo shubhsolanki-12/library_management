@@ -51,7 +51,7 @@ public class LibraryTest {
     @Test
     public void returnFalseIfBookUnavialableToBorrow() {
         User user = new User("111", "Shubh Solanki");
-        library.addUser(user);
+        // library.addUser(user);
 
         library.addBook("1224", "It Ends with Us", "Colleen Hoover");
 
@@ -61,4 +61,30 @@ public class LibraryTest {
         assertFalse(result);
     }
 
+    @Test
+    public void returnBookTest() {
+        User user = new User("111", "Shubh Solanki");
+
+        library.addBook("1224", "It Ends with Us", "Colleen Hoover");
+
+        library.borrowBook("1224", user);
+
+        boolean result = library.returnBook("1224", user);
+
+        assertTrue(result);
+    }
+
+    @Test
+    public void returnFalseIfBookUnavialableToReturn() {
+        User user = new User("111", "Shubh Solanki");
+
+        library.addBook("1224", "It Ends with Us", "Colleen Hoover");
+
+        library.borrowBook("1224", user);
+        library.returnBook("1224", user);
+
+        boolean result = library.returnBook("1224", user);
+
+        assertFalse(result);
+    }
 }
